@@ -161,3 +161,60 @@ INSERT INTO adresler VALUES('10003','Mutlu Sok', '40.Cad.','IST');
 INSERT INTO adresler VALUES('10003','Can Sok', '50.Cad.','Ankara');
 INSERT INTO adresler VALUES('10002','Ağa Sok', '30.Cad.','Antep');
 select * from adresler;
+
+
+
+
+
+
+
+-- 
+create table Employee(
+EmployeeID int primary key,
+FirstName varchar(25),
+LastName varchar(25),
+City varchar(10),
+State varchar(10));
+
+insert into Employee (EmployeeID,FirstName,LastName,City,State) values (10330,'John','John','NY','NY');
+insert into Employee (EmployeeID,FirstName,LastName,City,State) values (10449,'Sarah','Lebat','Melbourne','Bourke');
+insert into Employee (EmployeeID,FirstName,LastName,City,State) values (11012,'Jon','Dallas','NY','NY');
+insert into Employee (EmployeeID,FirstName,LastName,City,State) values (11013,'Gheorghe','Honey','NY','NY');
+insert into Employee (EmployeeID,FirstName,LastName,City,State) values (11014,'Anton','Savar','NY','NY');
+
+select * from Employee;
+
+-- ******************************************************************
+
+create table Payments(
+EmployeeID int,
+SalaryDate varchar(15),
+MonthID int,
+Value int,
+constraint EID foreign key (EmployeeID) references Employee(EmployeeID));
+
+
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'June',6,128);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'July',7,158);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'August',8,133);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'September',9,120);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'October',10,188);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'November',11,160);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10330,'December',12,105);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10449,'September',9,150);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10449,'October',10,158);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10449,'November',11,160);
+insert into Payments (EmployeeID,SalaryDate,MonthID,Value) values (10449,'December',12,180);
+
+select * from Payments;
+-- ********************************************************************************
+--1. Write an SQL query to display all employees having their name starting with the letter 'J'
+select * from Employee
+where FirstName like 'J%';
+
+-- ********************************************************************************
+--2. Write an SQL query to display the total amount earned by each employee
+select EmployeeID, sum (value)
+from Payments 
+group by EmployeeID;
+
