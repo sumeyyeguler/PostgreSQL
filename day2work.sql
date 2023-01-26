@@ -1,4 +1,4 @@
-
+create table personel(
 personel_id serial,
 personel_isim varchar(30),
 personel_soyisim varchar(20),
